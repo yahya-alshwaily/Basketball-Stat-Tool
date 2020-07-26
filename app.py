@@ -40,7 +40,6 @@ def clean_data_and_balance_teams():
 		if player['experience'] == False and panthers_inxp < 3:
 			panthers.append(player)
 			panthers_inxp += 1
-			
 		elif player['experience'] == True and panthers_xp < 3:
 			panthers.append(player)
 			panthers_xp += 1
@@ -57,7 +56,7 @@ def clean_data_and_balance_teams():
 			warriors.append(player)
 			warriors_xp += 1
 
-			
+
 def get_choice():
 	
 	print("""
@@ -71,13 +70,13 @@ Here are your choices:
  2) Quit
   """)
 	
-	menu_choice = str(input("Enter an option > "))
+	menu_choice = input("Enter an option > ")
 	while menu_choice != "1" and menu_choice != "2":
-		menu_choice = str(input("Please Enter an option from the choices > "))
+		menu_choice = input("Please Enter an option from the choices > ")
 		
 		
 	if menu_choice == "2":
-			sys.exit()
+		sys.exit()
 	
 	elif menu_choice == "1":
 		print("""
@@ -99,7 +98,7 @@ def get_team(team_choice):
 	for element in teams_main[team_choice - 1]:
 		team_heights.append(element['height'])
 	
-	team_avg_height = float(sum(team_heights)/len(teams_main[team_choice - 1]))
+	team_avg_height = sum(team_heights)/len(teams_main[team_choice - 1])
 	
 	team_names = ['Panthers', 'Bandits', 'Warriors']
 	
