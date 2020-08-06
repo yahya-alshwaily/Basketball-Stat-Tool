@@ -9,9 +9,26 @@ panthers = teams_main [0] = []
 bandits = teams_main [1] = []
 warriors = teams_main [2] = []
 
+"""
+The app file imports the set of data from "constants" and are copied to prevent mutation of the original imported data
+The list of teams is further assigned lists for each element, demarking the names of the teams
+"""
 
 def clean_data_and_balance_teams():
 
+	"""
+	This function takes the data from the constants file and clean them for the application of this file, which is to clean
+	it to the desired values and used to allocate the players data to the teams list.
+
+	the data being cleaned is:
+	1) the heights from strings with "inches" attached to each height value to an int value
+	2) the player's expereince is cleaned from the string "yes" and "no" to boolean values of True and False
+	3) seperate the guardians strings into individual strings for each guardian and store them in a list inside the player's dict data
+
+	the data is then allocated to each team:
+	1) each team gets an equally experienced list of players sequentially
+	"""
+	# Experience counters to limit how many experienced and inexperienced players are allocated to each team
 	panthers_xp = 0
 	panthers_inxp = 0
 	bandits_xp = 0
@@ -19,10 +36,10 @@ def clean_data_and_balance_teams():
 	warriors_xp = 0
 	warriors_inxp = 0
 	
+	# cleaning begins
 	for element in players_main:
 			
-		element['height'] = element['height'][0:2]
-		element['height'] = int(element['height'])
+		element['height'] = int(element['height'][0:2])
 		
 		if element['experience'] == 'NO':
 			element['experience'] = False
@@ -34,7 +51,8 @@ def clean_data_and_balance_teams():
 	
 	for element in players_main:
 		element['guardians'] = ', '.join(element['guardians'])
-	
+	# cleaning ends
+
 	for player in players_main:
 			
 		if player['experience'] == False and panthers_inxp < 3:
@@ -59,13 +77,15 @@ def clean_data_and_balance_teams():
 
 def get_choice():
 	
+	"""
+	This function dispolay the menu options for the user, the input values are guarded against user erroneous 
+	inputs by accepting inputs as strings and using these strings to compare with the available choices
+	"""
+
 	print("""
 BASKETBALL TEAM STATS TOOL
-
 ---- MENU----
-
 Here are your choices:
-
  1) Display Team Stats
  2) Quit
   """)
@@ -93,7 +113,14 @@ Here are your choices:
 
 
 def get_team(team_choice):
-	
+	"""
+	This function takes the choice inputed from the user and displays the team's data in a user friendly manner,
+	Other jobs this function does is:
+	1) calculate and display the average heights of the player's teams
+	2) Extrapolate the team's experience in a list and display the number of experienced and inexperienced players
+	3) Extrapolate the team's player names and store it in a list for it to be diplayed
+	4) Extrapolate the team's guardians and store it in a list for it to be diplayed
+	"""
 	team_heights = []
 	for element in teams_main[team_choice - 1]:
 		team_heights.append(element['height'])
@@ -137,4 +164,3 @@ if __name__ == "__main__":
 	while ENTER == '':
 		get_team(get_choice())
 		ENTER = input("\nPress ENTER to continue...")
-	
