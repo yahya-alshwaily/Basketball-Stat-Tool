@@ -78,7 +78,7 @@ def clean_data_and_balance_teams():
 def get_choice():
 	
 	"""
-	This function dispolay the menu options for the user, the input values are guarded against user erroneous 
+	This function display the menu options for the user, the input values are guarded against user erroneous 
 	inputs by accepting inputs as strings and using these strings to compare with the available choices
 	"""
 
